@@ -1,6 +1,6 @@
 import './home.scss';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Row, Col, Alert } from 'reactstrap';
@@ -9,10 +9,12 @@ import { useAppSelector } from 'app/config/store';
 import ListRecette from 'app/modules/Recette/ListRecette';
 import AddIcon from '@mui/icons-material/Add';
 import { Fab } from '@mui/material';
+import Form from 'app/modules/Recette/Form'; // Remplacez 'chemin/vers' par le chemin réel
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
   console.log(account);
+  const [formOpen, setFormOpen] = useState(false);
 
   return (
     <Row>
@@ -25,7 +27,7 @@ export const Home = () => {
         {account?.login ? (
           <div>
             {/*<Alert color="success">You are logged in as user &quot;{account.login}&quot;.</Alert>*/}
-            <ListRecette />
+            {formOpen ? <Form /> : <ListRecette />}
           </div>
         ) : (
           <div>
@@ -49,11 +51,24 @@ export const Home = () => {
           </div>
         )}
       </Col>
-      <div>
-        <Fab color="primary" aria-label="add">
-          <AddIcon />
-        </Fab>
-      </div>
+      {account?.login ? (
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+          <Fab
+            style={{
+              backgroundColor: '#e57373',
+            }}
+            color="primary"
+            aria-label="add"
+            onClick={() => {
+              setFormOpen(prev => {
+                return !prev;
+              });
+            }}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
+      ) : null}
     </Row>
   );
 };

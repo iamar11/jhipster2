@@ -34,7 +34,7 @@ export default function RecetteCard({ props }) {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {/* {props.user.login.substring(0,2)} */}
+              {props.user.login.substring(0, 2)}
             </Avatar>
           }
           title={props.title}
