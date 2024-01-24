@@ -21,6 +21,12 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
+  return formattedDate;
+};
+
 export default function RecetteCard({ props }) {
   return (
     <div>
@@ -28,10 +34,11 @@ export default function RecetteCard({ props }) {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              AN
+              {/* {props.user.login.substring(0,2)} */}
             </Avatar>
           }
           title={props.title}
+          subheader={formatDate(props.date)}
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
