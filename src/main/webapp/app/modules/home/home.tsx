@@ -13,7 +13,6 @@ import Form from 'app/modules/Recette/Form'; // Remplacez 'chemin/vers' par le c
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
-  console.log(account);
   const [formOpen, setFormOpen] = useState(false);
 
   return (
@@ -27,7 +26,7 @@ export const Home = () => {
         {account?.login ? (
           <div>
             {/*<Alert color="success">You are logged in as user &quot;{account.login}&quot;.</Alert>*/}
-            {formOpen ? <Form /> : <ListRecette />}
+            {formOpen ? <Form user={account.id} /> : <ListRecette />}
           </div>
         ) : (
           <div>

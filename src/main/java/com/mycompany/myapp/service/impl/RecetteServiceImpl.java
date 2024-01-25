@@ -5,6 +5,7 @@ import com.mycompany.myapp.repository.RecetteRepository;
 import com.mycompany.myapp.service.RecetteService;
 import com.mycompany.myapp.service.dto.RecetteDTO;
 import com.mycompany.myapp.service.mapper.RecetteMapper;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class RecetteServiceImpl implements RecetteService {
         log.debug("Request to save Recette : {}", recetteDTO);
         Recette recette = recetteMapper.toEntity(recetteDTO);
         recette = recetteRepository.save(recette);
+        recette.setDate(LocalDate.now());
         return recetteMapper.toDto(recette);
     }
 

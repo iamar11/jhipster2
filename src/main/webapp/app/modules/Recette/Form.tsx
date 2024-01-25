@@ -1,45 +1,25 @@
 import { TextField, Typography, Button } from '@mui/material';
-import dayjs from 'dayjs';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { styled } from '@mui/material/styles';
 import { createEntity } from 'app/entities/recette/recette.reducer';
 import { useDispatch } from 'react-redux';
+import { IUser } from 'app/shared/model/user.model';
 
 // Interface décrivant la structure des données de la recette
 interface RecipeData {
   title: string;
   description: string;
+  user: IUser;
 }
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#e57373"
-//     },
-//     secondary: {
-//       main: "purple"},
-//   },
-// });
+function RecipeForm(props) {
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch();
-
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
-
-const RecipeForm: React.FC = () => {
   // State pour stocker les valeurs du formulaire
   const [recipeData, setRecipeData] = useState<RecipeData>({
     title: '',
     description: '',
+    user: { id: props.user },
   });
 
   // Gestionnaire de changement pour mettre à jour le state lorsque les champs du formulaire changent
@@ -92,6 +72,6 @@ const RecipeForm: React.FC = () => {
       {/* Ajoutez un label pour l'input file et un VisuallyHiddenInput si nécessaire */}
     </form>
   );
-};
+}
 
 export default RecipeForm;
