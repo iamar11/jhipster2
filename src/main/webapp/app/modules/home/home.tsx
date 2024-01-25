@@ -20,7 +20,7 @@ export const Home = () => {
       <Col md="3" className="pad">
         <span className="hipster rounded" />
       </Col>
-      <Col md="9">
+      <Col md="8">
         {/*<h1 className="display-4">Welcome, Java Hipster!</h1>*/}
         {/*<p className="lead">This is your homepage</p>*/}
         {account?.login ? (
@@ -50,24 +50,28 @@ export const Home = () => {
           </div>
         )}
       </Col>
-      {account?.login ? (
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-          <Fab
-            style={{
-              backgroundColor: '#e57373',
-            }}
-            color="primary"
-            aria-label="add"
-            onClick={() => {
-              setFormOpen(prev => {
-                return !prev;
-              });
-            }}
-          >
-            <AddIcon />
-          </Fab>
-        </div>
-      ) : null}
+      <Col md="1">
+        {account?.login ? (
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+            <Fab
+              style={{
+                backgroundColor: '#e57373',
+                transform: formOpen ? 'rotate(45deg)' : 'none',
+                transition: 'transform 0.3s ease',
+              }}
+              color="primary"
+              aria-label="add"
+              onClick={() => {
+                setFormOpen(prev => {
+                  return !prev;
+                });
+              }}
+            >
+              <AddIcon />
+            </Fab>
+          </div>
+        ) : null}
+      </Col>
     </Row>
   );
 };

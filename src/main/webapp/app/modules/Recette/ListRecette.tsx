@@ -1,6 +1,5 @@
 import RecetteCard from 'app/modules/Recette/RecetteCard';
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from 'app/config/store';
 import { getEntities } from 'app/entities/recette/recette.reducer';
 import { useDispatch } from 'react-redux';
 

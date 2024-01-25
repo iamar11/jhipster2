@@ -26,7 +26,6 @@ function RecipeForm(props) {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setRecipeData({ ...recipeData, [name]: value });
-    console.log('salut', name, value);
   };
 
   // Gestionnaire de soumission pour traiter le formulaire lorsque l'utilisateur le soumet
@@ -44,7 +43,16 @@ function RecipeForm(props) {
       <Typography variant="h6" gutterBottom>
         Titre de la recette:
       </Typography>
-      <TextField fullWidth margin="normal" name="title" value={recipeData.title} onChange={handleInputChange} />
+      <br />
+      <TextField
+        fullWidth
+        margin="normal"
+        name="title"
+        value={recipeData.title}
+        onChange={handleInputChange}
+        placeholder="Un minimum de 5 caractères et un maximum de 150"
+      />
+      <br />
       <br />
       <Typography variant="h6" gutterBottom>
         Description de la recette:
@@ -53,12 +61,14 @@ function RecipeForm(props) {
         fullWidth
         multiline
         rows={3}
-        maxRows={4}
+        maxRows={5}
         margin="normal"
+        placeholder="Un minimum de 5 caractères et un maximum de 750"
         name="description"
         value={recipeData.description}
         onChange={handleInputChange}
       />
+      <br />
       <br />
       <Button
         type="submit"
@@ -69,7 +79,6 @@ function RecipeForm(props) {
       >
         Poster la recette
       </Button>
-      {/* Ajoutez un label pour l'input file et un VisuallyHiddenInput si nécessaire */}
     </form>
   );
 }
